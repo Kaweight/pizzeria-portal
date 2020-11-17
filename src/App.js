@@ -7,6 +7,8 @@ import Ordering from "./components/views/Ordering/Ordering";
 import Tables from "./components/views/Tables/Tables";
 import Kitchen from "./components/views/Kitchen/Kitchen";
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const theme = createMuiTheme({
   palette: {
@@ -28,21 +30,23 @@ const theme = createMuiTheme({
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <MainLayout>
-          <ThemeProvider theme={theme}>
-            <Switch>
-              <Route>
-                <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
-                <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
-                <Route exact path={`${process.env.PUBLIC_URL}/tables`} component={Tables} />
-                <Route exact path={`${process.env.PUBLIC_URL}/kitchen`} component={Kitchen} />
-                <Route exact path={`${process.env.PUBLIC_URL}/tables/booking/:id`} component={Ordering} />
-              </Route>
-            </Switch>
-          </ThemeProvider>
-        </MainLayout>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <MainLayout>
+            <ThemeProvider theme={theme}>
+              <Switch>
+                <Route>
+                  <Route exact path={`${process.env.PUBLIC_URL}/`} component={Homepage} />
+                  <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login} />
+                  <Route exact path={`${process.env.PUBLIC_URL}/tables`} component={Tables} />
+                  <Route exact path={`${process.env.PUBLIC_URL}/kitchen`} component={Kitchen} />
+                  <Route exact path={`${process.env.PUBLIC_URL}/tables/booking/:id`} component={Ordering} />
+                </Route>
+              </Switch>
+            </ThemeProvider>
+          </MainLayout>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }

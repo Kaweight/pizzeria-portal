@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 const Waiter = () => (
   <div className={styles.component}>
     <Paper className={styles.component}>
+      <h2>Waiter</h2>
       <Table>
         <TableHead>
           <TableRow>
